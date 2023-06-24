@@ -43,10 +43,10 @@ function App() {
   }, []);
 
   React.useEffect(() => {
-    tokenCheck();
+    checkToken();
   }, [])
 
-  const tokenCheck = () => {
+  const checkToken = () => {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
       auth.checkToken(jwt)
@@ -143,7 +143,7 @@ function App() {
                 onDeleteClick={handleCardDelete}
                 loggedIn={loggedIn} />} />
             <Route path="/signup" element={<Register />}></Route>
-            <Route path="/signin" element={<Login handleLogin={() => { setLoggedIn(true) }} tokenCheck={tokenCheck}/>}></Route>
+            <Route path="/signin" element={<Login handleLogin={() => { setLoggedIn(true) }} userEmail={setUserEmail}/>}></Route>
           </Routes>
           
           <Footer />

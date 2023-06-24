@@ -5,7 +5,7 @@ import * as auth from '../utils/auth.js';
 import InfoToolTip from './InfoTooltip';
 
 
-function Login({ handleLogin, tokenCheck}) {
+function Login({ handleLogin, userEmail}) {
   const navigate = useNavigate();
   const [isOpenPopup, setIsOpenPopup] = React.useState(false);
   const [successLog, setSuccesLog] = React.useState(false);
@@ -33,9 +33,9 @@ function Login({ handleLogin, tokenCheck}) {
       .then((data) => {
         handleLogin();
         setSuccesLog(true);
+        userEmail(formValue.email);
         navigate('/', { replace: true });
         localStorage.setItem('jwt', data.token);
-        tokenCheck();
       })
       .catch(err => {
         setSuccesLog(false);
